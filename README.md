@@ -9,3 +9,6 @@ The original name will be keep and the file behind will be replace.
 This is based on two angular plugin:
 - ng-file-upload
 - ng-table
+
+Login for umbraco:
+admin admin
