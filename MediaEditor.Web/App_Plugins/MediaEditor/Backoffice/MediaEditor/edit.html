@@ -24,9 +24,9 @@
         <div class="umb-panel-body umb-scrollable row-fluid">
             <div class="umb-pane">
 
-                <div class="col-md-12" style="margin-bottom: 40px">
+                <div class="col-md-12" style="margin-bottom: 40px" ng-show="uploader.queue.length>0">
                     <input type="hidden" id="uploaditem" />
-                    <h3>Upload queue</h3>
+                    <h4>Upload queue</h4>
                     <p>Queue length: {{ uploader.queue.length }}</p>
 
                     <table class="table">
@@ -90,7 +90,7 @@
 
 
                 <!-- Main Table -->
-                <table id="traceLog" class="table table-bordered table-condensed table-striped"
+                <table id="mediaItems" class="table table-bordered table-condensed table-striped"
                        ng-table="tableParams" show-filter="true" template-pagination="custom/pager">
                     <tbody>
                         <tr ng-repeat="item in $data">

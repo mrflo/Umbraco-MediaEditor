@@ -8,7 +8,7 @@ angular.module("umbraco").controller("MediaEditorController",
         $scope.feedback = {};
         $scope.feedback.message = "Loading...";
 
-        var mediarootId = 0;
+        var mediarootId = $routeParams.id;
 
         var dataUrl = "/umbraco/backoffice/MediaEditor/MediaEditor/GetMedias?mediaId="+mediarootId;
         var data;
@@ -18,7 +18,7 @@ angular.module("umbraco").controller("MediaEditorController",
 
             $scope.tableParams = new ngTableParams({
                 page: 1,            // show first page
-                count: 2,          // count per page
+                count: 25,          // count per page
                 sorting: {
                     Name: 'desc'     // initial sorting
                 },

@@ -270,6 +270,7 @@
     <Content Include="Config\grid.editors.config.js" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="umbraco\Config\Lang\en.xml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

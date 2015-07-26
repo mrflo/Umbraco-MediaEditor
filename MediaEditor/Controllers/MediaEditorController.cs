@@ -45,13 +45,29 @@ namespace MediaEditor.Controllers
                 //TODO PAGING & Ordering on request
                 //var descendants = ms.GetPagedDescendants(mediaId, pageIndex, pageSize,out totalRecords, orderBy, global::Umbraco.Core.Persistence.DatabaseModelDefinitions.Direction.Ascending, filter)//.Where(m => m.ContentType.Alias != "Folder")
 
-                var descendants = ms.GetDescendants(mediaId).Where(m => m.ContentType.Alias != "Folder")
-                 .Select(m => new MediaEditorItem() { FilePath = m.Properties["umbracoFile"].Value.ToString(), MediaId = m.Id, Name = m.Name })                 
-                 .OrderBy(m => m.Name);
+                var descendants = ms.GetChildren(mediaId).Where(m => m.ContentType.Alias != "Folder")
+                 .Select(m => new MediaEditorItem() { FilePath = m.Properties["umbracoFile"].Value.ToString(), MediaId = m.Id, Name = m.Name });                 
+    
             
 
             return descendants;
 
+        }
+
+        [HttpGet]
+        public IEnumerable<IMedia> GetMediaFolders(int id)
+        {
+            var ms = Services.MediaService;
+            IEnumerable<IMedia> result = null;
+            if (id < 0)
+            {
+                result = ms.GetRootMedia().Where(m => m.ContentType.Alias == "Folder");
+            }
+            else
+            {
+                result = ms.GetChildren(id).Where(m => m.ContentType.Alias == "Folder");
+            }
+            return result;
         }
 
         public async Task<HttpResponseMessage> Upload(int id)
