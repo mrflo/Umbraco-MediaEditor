@@ -1,0 +1,10 @@
+﻿{       
+    javascript: [
+        '~/App_Plugins/MediaEditor/backoffice/MediaEditor/MediaController.js',
+		'~/App_Plugins/MediaEditor/backoffice/MediaEditor/ng-table/ng-table.min.js',
+		'~/App_Plugins/MediaEditor/backoffice/MediaEditor/angular-file-upload/angular-file-upload.js'
+    ],
+	css: [
+		'~/App_Plugins/MediaEditor/backoffice/MediaEditor/style.css',
+	]
+}

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaEditor", "MediaEditor\MediaEditor.csproj", "{3F3ABE8A-551F-43D5-B52B-C0E024995198}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaEditor.Web", "MediaEditor.Web\MediaEditor.Web.csproj", "{C5E31144-3484-48F5-BD09-039CC6C3ABD2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3F3ABE8A-551F-43D5-B52B-C0E024995198}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F3ABE8A-551F-43D5-B52B-C0E024995198}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F3ABE8A-551F-43D5-B52B-C0E024995198}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F3ABE8A-551F-43D5-B52B-C0E024995198}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5E31144-3484-48F5-BD09-039CC6C3ABD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5E31144-3484-48F5-BD09-039CC6C3ABD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5E31144-3484-48F5-BD09-039CC6C3ABD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5E31144-3484-48F5-BD09-039CC6C3ABD2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,138 @@
+﻿<div ng-controller="MediaEditorController">
+    <div class="umb-panel">
+        <!-- Header -->
+        <div class="umb-panel-header">
+            <div class="row-fluid">
+                <div class="span8">
+                    <h1 class="headline">Media Editor</h1>
+                    <p>
+                        &nbsp;  <strong>{{tableParams.data.length}}</strong> entries
+                    </p>
+                </div>
+                <div class="span4">
+                    <div class="btn-toolbar pull-right umb-btn-toolbar">
+                        <div class="btn-group">
+                            <p class="btn btn-link umb-status-label">
+                                <a class="btn" ng-click="reload()" style="text-decoration:none;"><i class="icon-refresh"></i> Reload</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Panel Body -->
+        <div class="umb-panel-body umb-scrollable row-fluid">
+            <div class="umb-pane">
+
+                <div class="col-md-12" style="margin-bottom: 40px">
+                    <input type="hidden" id="uploaditem" />
+                    <h3>Upload queue</h3>
+                    <p>Queue length: {{ uploader.queue.length }}</p>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th width="50%">Name</th>
+                                <th ng-show="uploader.isHTML5">Size</th>
+                                <th ng-show="uploader.isHTML5">Progress</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in uploader.queue">
+                                <td><strong>{{ item.file.name }}</strong></td>
+                                <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                <td ng-show="uploader.isHTML5">
+                                    <div class="progress" style="margin-bottom: 0;">
+                                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                                    <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                    <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                                </td>
+                                <td nowrap>
+                                    <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                        <span class="glyphicon glyphicon-upload"></span> Upload
+                                    </button>
+                                    <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                        <span class="glyphicon glyphicon-trash"></span> Remove
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div>
+                        <div>
+                            Queue progress:
+                            <div class="progress" style="">
+                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                            <span class="glyphicon glyphicon-upload"></span> Upload all
+                        </button>
+                        <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
+                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                        </button>
+                        <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+                            <span class="glyphicon glyphicon-trash"></span> Remove all
+                        </button>
+                    </div>
+
+                </div>
+
+
+                <!-- Main Table -->
+                <table id="traceLog" class="table table-bordered table-condensed table-striped"
+                       ng-table="tableParams" show-filter="true" template-pagination="custom/pager">
+                    <tbody>
+                        <tr ng-repeat="item in $data">
+                            
+                            <td data-title="'Name'" sortable="'Name'" filter="{ 'Name': 'text' }" >
+                                {{ item.Name }}
+                            </td>
+                            <td data-title="'FilePath'" sortable="'Path'" filter="{ 'FilePath': 'text' }" >
+                                <a href="{{ item.FilePath }}" target=" _blank">{{ item.FilePath }}</a>
+                            </td>
+                            <td data-title="'Upload'">
+                                <input type="file" nv-file-select="" uploader="uploader" data-id="{{item.MediaId}}" />
+                            </td>
+                        </tr>
+                        <tr ng-show="feedback.message.length > 0">
+                            <td colspan="4" class="dataLoading">{{ feedback.message }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Custom Pagination Template -->
+                <script type="text/ng-template" id="custom/pager">
+                    <ul class="pager ng-cloak">
+                        <li ng-repeat="page in pages"
+                            ng-class="{'disabled': !page.active, 'previous': page.type == 'prev', 'next': page.type == 'next'}"
+                            ng-show="page.type == 'prev' || page.type == 'next'" ng-switch="page.type">
+                            <a ng-switch-when="prev" ng-click="params.page(page.number)" href="">&laquo; Previous</a>
+                            <a ng-switch-when="next" ng-click="params.page(page.number)" href="">Next &raquo;</a>
+                        </li>
+                        <li>
+                            <div class="btn-group">
+                                <button type="button" ng-class="{'active':params.count() == 10}" ng-click="params.count(10)" class="btn btn-default">10</button>
+                                <button type="button" ng-class="{'active':params.count() == 25}" ng-click="params.count(25)" class="btn btn-default">25</button>
+                                <button type="button" ng-class="{'active':params.count() == 50}" ng-click="params.count(50)" class="btn btn-default">50</button>
+                                <button type="button" ng-class="{'active':params.count() == 100}" ng-click="params.count(100)" class="btn btn-default">100</button>
+                            </div>
+                        </li>
+                    </ul>
+                </script>
+            </div>
+            <!-- umb-pane -->
+        </div>
+    </div>
+    <!-- umb-panel -->
+</div>
