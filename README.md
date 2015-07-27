@@ -7,8 +7,8 @@ This tool helps you to find and update easily multiple files in the media sectio
 #Upload multiple files in a queue
 Just select all the files that you want to update and they go in a queue. You can then click on "upload all" and just grab a coffee and relax when your media are uploading (asynchronous multiple file upload).
 The original name will be kept and the file behind each media will be replace. This is particularly usefull for those who are creating a "download center" on their website and for those of you who have a lot of links to media elements in your content pages.
+
 This is based on two angular plugins:
- 
 - Angular File Upload: https://github.com/nervgh/angular-file-upload
 - ngTable: http://ng-table.com
  
