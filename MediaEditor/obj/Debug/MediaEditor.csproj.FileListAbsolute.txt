@@ -1,4 +1,3 @@
-C:\Projects\MediaEditor\MediaEditor\obj\Debug\MediaEditor.csprojResolveAssemblyReference.cache
 C:\Projects\MediaEditor\MediaEditor\bin\MediaEditor.dll.config
 C:\Projects\MediaEditor\MediaEditor\bin\MediaEditor.dll
 C:\Projects\MediaEditor\MediaEditor\bin\MediaEditor.pdb
