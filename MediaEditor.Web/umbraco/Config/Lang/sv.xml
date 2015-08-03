@@ -626,6 +626,8 @@
     <key alias="statistics">Statistik</key>
     <key alias="translation">Översättning</key>
     <key alias="users">Användare</key>
+    <key alias="MediaEditor">Media Editor</key>
+    <key alias="mediaeditor">Media Editor</key>
   </area>
   <area alias="settings">
     <key alias="asAContentMasterType">som huvudinnehållstyp. Tabbar från huvudinnehållstyper visas inte och kan endast redigeras på själva huvudinnehållstypen.</key>

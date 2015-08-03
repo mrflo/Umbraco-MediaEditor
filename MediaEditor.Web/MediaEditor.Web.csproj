@@ -270,7 +270,6 @@
     <Content Include="Config\grid.editors.config.js" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="umbraco\Config\Lang\en.xml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -281,6 +280,9 @@
       <Project>{3f3abe8a-551f-43d5-b52b-c0e024995198}</Project>
       <Name>MediaEditor</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="umbraco\Config\Lang\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

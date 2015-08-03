@@ -602,6 +602,8 @@ Você pode publicar esta página e todas suas sub-páginas ao selecionar <em>pub
     <key alias="statistics">Estatísticas</key>
     <key alias="translation">Tradução</key>
     <key alias="users">Usuários</key>
+    <key alias="MediaEditor">Media Editor</key>
+    <key alias="mediaeditor">Media Editor</key>
   </area>
   <area alias="settings">
     <key alias="defaulttemplate">Modelo padrão</key>

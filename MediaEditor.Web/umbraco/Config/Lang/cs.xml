@@ -655,11 +655,9 @@
     <key alias="paSimpleHelp">Jestliže chcete nastavit jenom jednoduchou ochranu prostřednictvím uživatelského jména a hesla</key>
   </area>
   <area alias="publish">
-    <key alias="contentPublishedFailedAwaitingRelease">
-      <![CDATA[
+    <key alias="contentPublishedFailedAwaitingRelease"><![CDATA[
       %0% nemůže být publikována, protože položka je naplánovaná k uvolnění.
-    ]]>
-    </key>
+    ]]></key>
     <key alias="contentPublishedFailedInvalid"><![CDATA[
       %0% nemůže být publikována, protože tyto vlastnosti: %1%  nesplňují validační pravidla.
     ]]></key>
@@ -720,6 +718,8 @@
     <key alias="translation">Překlad</key>
     <key alias="users">Uživatelé</key>
     <key alias="help" version="7.0">Nápověda</key>
+    <key alias="MediaEditor">Media Editor</key>
+    <key alias="mediaeditor">Media Editor</key>
   </area>
   <area alias="settings">
     <key alias="defaulttemplate">Výchozí šablona</key>

@@ -529,6 +529,8 @@ Miłego dnia!]]></key>
     <key alias="statistics">Statystyki</key>
     <key alias="translation">Tłumaczenie</key>
     <key alias="users">Użytkownicy</key>
+    <key alias="MediaEditor">Media Editor</key>
+    <key alias="mediaeditor">Media Editor</key>
   </area>
   <area alias="settings">
     <key alias="defaulttemplate">Domyślny szablon</key>

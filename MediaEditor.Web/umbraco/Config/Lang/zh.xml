@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <language alias="zh" intName="Chinese (Simple)" localName="中文（简体，中国）" lcid="0804" culture="zh-CN">
   <creator>
     <name>孙柱梁</name>
@@ -47,19 +47,15 @@
     <key alias="domainCreated">新域名 '%0%' 已创建</key>
     <key alias="domainDeleted">域名 '%0%' 已删除</key>
     <key alias="domainExists">域名 '%0%' 已使用</key>
-    <key alias="domainHelp">
-    <![CDATA[例如：example.com、www.example.com、example.com:8080、<br/>
+    <key alias="domainHelp"><![CDATA[例如：example.com、www.example.com、example.com:8080、<br/>
         https://www.example.com/、example.com/en、……使用 * 代表任意域名，<br/>
-        只需要设置语言部分即可。]]>
-        </key>
+        只需要设置语言部分即可。]]></key>
     <key alias="domainUpdated">域名 '%0%' 已更新</key>
-    <key alias="invalidDomain">域名错误</key> 
+    <key alias="invalidDomain">域名错误</key>
     <key alias="orEdit">编辑当前域名</key>
     <key alias="inherit">继承</key>
     <key alias="setLanguage">语言</key>
-    <key alias="setLanguageHelp">
-      <![CDATA[为当前节点及子节点设置语言，<br /> 也可以从父节点继承。]]>
-    </key>
+    <key alias="setLanguageHelp"><![CDATA[为当前节点及子节点设置语言，<br /> 也可以从父节点继承。]]></key>
     <key alias="setDomains">域名</key>
   </area>
   <area alias="auditTrails">
@@ -95,23 +91,23 @@
   <area alias="changeDocType">
     <key alias="changeDocTypeInstruction">要更改所选节点的文档类型，先在列表中选择合适的文档类型。</key>
     <key alias="changeDocTypeInstruction2">然后设置当前文档类型到新文档类型的各字段间的对应映射关系并保存。</key>
-    <key alias="contentRepublished">内容已被重新发布</key>    
+    <key alias="contentRepublished">内容已被重新发布</key>
     <key alias="currentProperty">当前属性</key>
     <key alias="currentType">当前类型</key>
     <key alias="docTypeCannotBeChanged">不能改变文档类型，因为没有可替代的类型。</key>
-    <key alias="docTypeChanged">文档类型已更改</key>    
+    <key alias="docTypeChanged">文档类型已更改</key>
     <key alias="mapProperties">要映射的字段</key>
     <key alias="mapToProperty">映射字段</key>
     <key alias="newTemplate">新模板</key>
     <key alias="newType">新类型</key>
-    <key alias="none">无</key>    
+    <key alias="none">无</key>
     <key alias="selectedContent">内容</key>
     <key alias="selectNewDocType">选择新的文档类型</key>
     <key alias="successMessage">选中文档的类型已被成功更改为[new type]，以下字段被映射：</key>
     <key alias="to">至</key>
     <key alias="validationErrorPropertyWithMoreThanOneMapping">不能完成字段映射，因为存在一个字段映射至多字段的问题。</key>
-    <key alias="validDocTypesNote">仅显示可作为替代的文档类型。</key>    
-  </area> 
+    <key alias="validDocTypesNote">仅显示可作为替代的文档类型。</key>
+  </area>
   <area alias="content">
     <key alias="about">关于本页</key>
     <key alias="alias">别名</key>
@@ -619,16 +615,12 @@
     <key alias="paSimpleHelp">如果您只希望提供一个用户名和密码就能访问</key>
   </area>
   <area alias="publish">
-    <key alias="contentPublishedFailedInvalid">
-      <![CDATA[%0%不能发布，因为%1%字段不合验证规则。]]>
-    </key>
+    <key alias="contentPublishedFailedInvalid"><![CDATA[%0%不能发布，因为%1%字段不合验证规则。]]></key>
     <key alias="contentPublishedFailedByEvent"><![CDATA[%0% 无法发布，第三方组件造成失败。
     ]]></key>
-    <key alias="contentPublishedFailedByParent">
-      <![CDATA[
+    <key alias="contentPublishedFailedByParent"><![CDATA[
       %0% 不能发布，因为上级页面没有发布。
-    ]]>
-    </key>  
+    ]]></key>
     <key alias="includeUnpublished">包含未发布的子项</key>
     <key alias="inProgress">正在发布，请稍候…</key>
     <key alias="inProgressCounter">%0% 中的 %1% 页面已发布…</key>
@@ -676,6 +668,8 @@
     <key alias="statistics">统计</key>
     <key alias="translation">翻译</key>
     <key alias="users">用户</key>
+    <key alias="MediaEditor">Media Editor</key>
+    <key alias="mediaeditor">Media Editor</key>
   </area>
   <area alias="settings">
     <key alias="asAContentMasterType">作为主控文档类型. 主控文档类型的标签只能在主控文档类型里修改。</key>

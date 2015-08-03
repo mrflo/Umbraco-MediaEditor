@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <language alias="fr" intName="French" localName="français" lcid="12" culture="fr-FR">
   <creator>
     <name>The Umbraco community</name>
@@ -668,11 +668,9 @@ Pour gérer votre site, ouvrez simplement le backoffice Umbraco et commencez à 
     <key alias="paSimpleHelp">Si vous souhaitez simplement mettre en place une protection par identifiant et mot de passe</key>
   </area>
   <area alias="publish">
-    <key alias="contentPublishedFailedAwaitingRelease">
-      <![CDATA[
+    <key alias="contentPublishedFailedAwaitingRelease"><![CDATA[
       %0% n'a pas pu être publié car cet élément est programmé pour être publié bientôt.
-    ]]>
-    </key>
+    ]]></key>
     <key alias="contentPublishedFailedInvalid"><![CDATA[
       %0% n'a pas pu être publié à cause des propriétés suivantes qui n'ont pas pu passer les règles de validation :  %1%.
     ]]></key>
@@ -733,6 +731,8 @@ Pour gérer votre site, ouvrez simplement le backoffice Umbraco et commencez à 
     <key alias="translation">Traduction</key>
     <key alias="users">Utilisateurs</key>
     <key alias="help" version="7.0">Aide</key>
+    <key alias="MediaEditor">Media Editor</key>
+    <key alias="mediaeditor">Media Editor</key>
   </area>
   <area alias="settings">
     <key alias="defaulttemplate">Template par défaut</key>

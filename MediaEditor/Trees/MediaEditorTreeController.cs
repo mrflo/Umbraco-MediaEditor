@@ -14,7 +14,7 @@ using Umbraco.Web.Trees;
 
 namespace MediaEditor.Trees
 {
-    [Tree("MediaEditor", "MediaEditor", "Media Folder")]
+    [Tree(Constants.Application.Alias, Constants.Application.Alias, Constants.Application.PageTitle)]
     [PluginController("MediaEditor")]
     public class MediaEditorTreeController : TreeController
     {

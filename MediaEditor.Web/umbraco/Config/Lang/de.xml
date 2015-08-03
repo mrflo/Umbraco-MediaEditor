@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <language alias="de" intName="German" localName="Deutsch" lcid="7" culture="de-DE">
   <creator>
     <name>The Umbraco community</name>
@@ -637,6 +637,8 @@ Wenn Sie sich für Runway entscheiden, können Sie optional Blöcke nutzen, die 
     <key alias="users">Benutzer</key>
     <key alias="contour">Umbraco Contour</key>
     <key alias="help">Hilfe</key>
+    <key alias="MediaEditor">Media Editor</key>
+    <key alias="mediaeditor">Media Editor</key>
   </area>
   <area alias="settings">
     <key alias="defaulttemplate">Standardvorlage</key>

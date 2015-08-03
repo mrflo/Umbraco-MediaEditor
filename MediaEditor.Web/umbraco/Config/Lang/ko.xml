@@ -613,6 +613,8 @@
     <key alias="statistics">통계</key>
     <key alias="translation">변환</key>
     <key alias="users">사용자</key>
+    <key alias="MediaEditor">Media Editor</key>
+    <key alias="mediaeditor">Media Editor</key>
   </area>
   <area alias="settings">
     <key alias="defaulttemplate">기본 템플릿</key>

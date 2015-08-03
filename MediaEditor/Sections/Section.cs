@@ -7,7 +7,7 @@ using umbraco.interfaces;
 
 namespace MediaEditor.Sections
 {
-    [Application("MediaEditor", "MediaEditor", "icon-umb-deploy", 15)]
+    [Application(Constants.Application.Alias, Constants.Application.Alias, Constants.Application.Icon, 15)]
     public class Section:IApplication
     {
         
