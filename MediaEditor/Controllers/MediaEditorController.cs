@@ -14,6 +14,8 @@ using Umbraco.Web.Editors;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
 using MediaEditor.Web.Models;
+using Newtonsoft.Json;
+using Umbraco.Web.Models;
 
 namespace MediaEditor.Controllers
 {
@@ -45,8 +47,11 @@ namespace MediaEditor.Controllers
                 //TODO PAGING & Ordering on request
                 //var descendants = ms.GetPagedDescendants(mediaId, pageIndex, pageSize,out totalRecords, orderBy, global::Umbraco.Core.Persistence.DatabaseModelDefinitions.Direction.Ascending, filter)//.Where(m => m.ContentType.Alias != "Folder")
 
-                var descendants = ms.GetChildren(mediaId).Where(m => m.ContentType.Alias != "Folder")
-                 .Select(m => new MediaEditorItem() { FilePath = m.Properties["umbracoFile"].Value.ToString(), MediaId = m.Id, Name = m.Name });                 
+                var descendants = ms.GetDescendants(mediaId).Where(m => m.ContentType.Alias != "Folder")
+                    .Select(m => new MediaEditorItem() {
+                        FilePath = (m.HasProperty("umbracoFile")) ? (m.Properties["umbracoFile"].Value.ToString().Contains("\"src\"") || m.Properties["umbracoFile"].Value.ToString().Contains("src:") ? JsonConvert.DeserializeObject<ImageCropDataSet>(m.Properties["umbracoFile"].Value.ToString()).Src : m.Properties["umbracoFile"].Value.ToString()) : "",
+                        MediaId = m.Id,
+                        Name = m.Name });                 
     
             
 
@@ -83,7 +88,13 @@ namespace MediaEditor.Controllers
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
             }
 
-            var directory = Path.GetDirectoryName(media.Properties["umbracoFile"].Value.ToString());
+            string existingPath = media.Properties["umbracoFile"].Value.ToString();
+            if (existingPath.Contains("\"src\"") || existingPath.Contains("src:"))
+            {
+                existingPath = JsonConvert.DeserializeObject<ImageCropDataSet>(existingPath).Src;
+            }
+
+            var directory = Path.GetDirectoryName(existingPath);
             string mapdirectory = HttpContext.Current.Server.MapPath(directory);
             if (!Directory.Exists(mapdirectory)) Directory.CreateDirectory(mapdirectory);
             var provider = new MultipartFormDataStreamProvider(mapdirectory);
@@ -112,26 +123,29 @@ namespace MediaEditor.Controllers
                         System.IO.File.Delete(Path.Combine(mapdirectory, fileName));
                     }
                     System.IO.File.Move(provider.FileData.First().LocalFileName, Path.Combine(mapdirectory, fileName));
+
                     //save file to replace media
                     media.Properties["umbracoFile"].Value = Path.Combine(directory,fileName).Replace("\\","/");
-                    media.Properties["umbracoExtension"].Value = Path.GetExtension(fileName).Replace(".", string.Empty);
-                    media.Properties["umbracoBytes"].Value = provider.FileData.First().Headers.ContentDisposition.Size;
+                    if (media.HasProperty("umbracoExtension"))                    
+                        media.Properties["umbracoExtension"].Value = Path.GetExtension(fileName).Replace(".", string.Empty);                    
+                    if(media.HasProperty("umbracoBytes"))
+                        media.Properties["umbracoBytes"].Value = provider.FileData.First().Headers.ContentDisposition.Size;
 
                     //To change the media to the new name remove this comment
                     //media.Name = fileName.Replace(Path.GetExtension(fileName),"");
 
                     ms.Save(media);
 
-                        //Extension verification optional
-                        /*if (Path.GetExtension(e.FileName) != media.Properties["umbracoExtension"].Value.ToString())
-                        { 
-                            throw new Exception("File has not the same extension of the existing one, create a new file in media section");
-                            return;
-                        }*/
+                    //Extension verification optional
+                    /*if (Path.GetExtension(e.FileName) != media.Properties["umbracoExtension"].Value.ToString())
+                    { 
+                        throw new Exception("File has not the same extension of the existing one, create a new file in media section");
+                        return;
+                    }*/
 
-                        //fileName = file.LocalFileName;                       
-                        //string savePath = mapdirectory + "/" + Path.GetFileName(fileName);
-                        //
+                    //fileName = file.LocalFileName;                       
+                    //string savePath = mapdirectory + "/" + Path.GetFileName(fileName);
+                    //
 
 
                      return Request.CreateResponse(HttpStatusCode.OK, fileName); 
