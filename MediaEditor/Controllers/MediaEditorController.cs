@@ -16,6 +16,7 @@ using Umbraco.Web.WebApi;
 using MediaEditor.Web.Models;
 using Newtonsoft.Json;
 using Umbraco.Web.Models;
+using Umbraco.Core.Logging;
 
 namespace MediaEditor.Controllers
 {
@@ -46,16 +47,28 @@ namespace MediaEditor.Controllers
 
                 //TODO PAGING & Ordering on request
                 //var descendants = ms.GetPagedDescendants(mediaId, pageIndex, pageSize,out totalRecords, orderBy, global::Umbraco.Core.Persistence.DatabaseModelDefinitions.Direction.Ascending, filter)//.Where(m => m.ContentType.Alias != "Folder")
+                IEnumerable<MediaEditorItem> descendants = null;
+                try
+                {
+                    descendants = ms.GetDescendants(mediaId).Where(m => m.ContentType.Alias != "Folder")
+                        .Select(m => new MediaEditorItem()
+                        {
+                            IsImage = m.ContentType.Alias == "Image" && m.HasProperty("umbracoFile") && m.Properties["umbracoFile"].Value != null,
+                            FilePath = (m.HasProperty("umbracoFile") && m.Properties["umbracoFile"].Value!=null) ? (m.Properties["umbracoFile"].Value.ToString().Contains("\"src\"") || m.Properties["umbracoFile"].Value.ToString().Contains("src:") ? JsonConvert.DeserializeObject<ImageCropDataSet>(m.Properties["umbracoFile"].Value.ToString()).Src : m.Properties["umbracoFile"].Value.ToString()) : "-",
+                            MediaId = m.Id,
+                            Name = m.Name
+                        });
+                  
+                }
+                catch (Exception e)
+                {
+                    //log this
+                    LogHelper.Error(this.GetType(), "Error getting Media id:"+mediaId,e); 
+                    return null;
+                }
 
-                var descendants = ms.GetDescendants(mediaId).Where(m => m.ContentType.Alias != "Folder")
-                    .Select(m => new MediaEditorItem() {
-                        FilePath = (m.HasProperty("umbracoFile")) ? (m.Properties["umbracoFile"].Value.ToString().Contains("\"src\"") || m.Properties["umbracoFile"].Value.ToString().Contains("src:") ? JsonConvert.DeserializeObject<ImageCropDataSet>(m.Properties["umbracoFile"].Value.ToString()).Src : m.Properties["umbracoFile"].Value.ToString()) : "",
-                        MediaId = m.Id,
-                        Name = m.Name });                 
-    
-            
+                return descendants;
 
-            return descendants;
 
         }
 
@@ -63,16 +76,26 @@ namespace MediaEditor.Controllers
         public IEnumerable<IMedia> GetMediaFolders(int id)
         {
             var ms = Services.MediaService;
-            IEnumerable<IMedia> result = null;
-            if (id < 0)
+            try
             {
-                result = ms.GetRootMedia().Where(m => m.ContentType.Alias == "Folder");
+                IEnumerable<IMedia> result = null;
+                if (id < 0)
+                {
+                    result = ms.GetRootMedia().Where(m => m.ContentType.Alias == "Folder");
+                }
+                else
+                {
+                    result = ms.GetChildren(id).Where(m => m.ContentType.Alias == "Folder");
+                }
+                return result;
             }
-            else
+            catch (Exception e)
             {
-                result = ms.GetChildren(id).Where(m => m.ContentType.Alias == "Folder");
+                //log this
+                LogHelper.Error(this.GetType(), "Error getting Folder id:" + id, e);
+                return null;
+            
             }
-            return result;
         }
 
         public async Task<HttpResponseMessage> Upload(int id)

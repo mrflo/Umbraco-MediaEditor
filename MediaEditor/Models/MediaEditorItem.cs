@@ -10,5 +10,6 @@ namespace MediaEditor.Web.Models
         public int MediaId { get; set; }
         public string Name { get; set; }
         public string FilePath { get; set; }
+        public bool IsImage {get;set;}
     }
 }
