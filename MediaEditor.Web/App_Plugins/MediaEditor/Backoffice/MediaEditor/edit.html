@@ -94,7 +94,7 @@
                        ng-table="tableParams" show-filter="true" template-pagination="custom/pager">
                     <tbody>
                         <tr ng-repeat="item in $data">
-                            <td data-title="''" style="text-align:center;"><a href="{{ item.FilePath }}" target=" _blank"><img src="{{item.FilePath}}?width=50&mode=max" ng-show="item.IsImage" /></a></td>
+                            <td data-title="''" style="text-align:center;"><a ng-href="{{ item.FilePath }}" target=" _blank"><img ng-src="{{item.FilePath}}?width=50&mode=max" ng-show="item.IsImage" /></a></td>
                             <td data-title="'Name'" sortable="'Name'" filter="{ 'Name': 'text' }" >
                                 {{ item.Name }}
                             </td>

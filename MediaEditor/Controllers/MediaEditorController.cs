@@ -111,7 +111,13 @@ namespace MediaEditor.Controllers
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
             }
 
-            string existingPath = media.Properties["umbracoFile"].Value.ToString();
+            string existingPath = "";
+            if (!media.HasProperty("umbracoFile") || (media.HasProperty("umbracoFile") && media.Properties["umbracoFile"].Value == null))
+            {
+                existingPath = "/media/" + media.Id + "/";
+            } else
+                existingPath = media.Properties["umbracoFile"].Value.ToString();
+
             if (existingPath.Contains("\"src\"") || existingPath.Contains("src:"))
             {
                 existingPath = JsonConvert.DeserializeObject<ImageCropDataSet>(existingPath).Src;
