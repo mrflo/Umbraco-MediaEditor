@@ -237,7 +237,7 @@ _Pvt_Extensions
 **/App_Data/[Pp]review/
 **/App_Data/TEMP/
 **/App_Data/[Cc]ache/
-Cached
+Cached/
 
 # Ignore Umbraco content cache file
 **/App_Data/umbraco.config
